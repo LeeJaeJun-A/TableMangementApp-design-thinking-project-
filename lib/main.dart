@@ -4,7 +4,6 @@ import 'Beijing.dart';
 import 'Chineserestaurant.dart';
 import 'Guest.dart';
 import 'loginpage.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -22,7 +21,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'RESTAURANT',
-      theme: ThemeData(primaryColor: Colors.white, accentColor: Colors.black),
+      theme: ThemeData(
+        primaryColor: Colors.white,
+        accentColor: Colors.black
+      ),
       home: LoginPage(),
       routes: routes,
     );
