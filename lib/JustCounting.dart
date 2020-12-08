@@ -46,13 +46,7 @@ class _JustCountingState extends State<JustCounting> {
           title: Text('북경반점',  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)
           ),
           centerTitle: true,
-          elevation: 0.0,
-          actions: <Widget> [IconButton(
-            icon: Icon(Icons.exit_to_app),
-            onPressed: (){
-              Navigator.of(context).pushNamed(LoginPage.tag);
-            },
-          )],
+          elevation: 0.0
         ),
         body: Center(child: _CountingBody() ,),
         floatingActionButton: FloatingActionButton(

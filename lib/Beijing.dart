@@ -14,7 +14,10 @@ class BeijingState extends State<Beijing> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: (){
-            Navigator.pop(context);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Chineserestaurant()));
           },
           icon: Icon(Icons.arrow_back),
         ),
