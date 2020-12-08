@@ -9,8 +9,8 @@ class JustCounting extends StatefulWidget {
 }
 
 class _JustCountingState extends State<JustCounting> {
-  String residualtable =''; //남은 테이블 수
-  String maxtable =''; // 총 테이블 수
+  String residualtable = ''; //남은 테이블 수
+  String maxtable = ''; // 총 테이블 수
   SharedPreferences _prefs;
 
   @override
@@ -37,18 +37,19 @@ class _JustCountingState extends State<JustCounting> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('북경반점',  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)
-          ),
-          centerTitle: true,
-          elevation: 0.0
+            title: Text('북경반점',
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold)),
+            centerTitle: true,
+            elevation: 0.0),
+        body: Center(
+          child: _CountingBody(),
         ),
-        body: Center(child: _CountingBody() ,),
         floatingActionButton: FloatingActionButton(
           onPressed: _newTable,
           tooltip: 'save',
@@ -57,48 +58,65 @@ class _JustCountingState extends State<JustCounting> {
       ),
     );
   }
+
   Widget _CountingBody() {
     return SafeArea(
       child: SingleChildScrollView(
-          child: Column(
-            children: <Widget> [
-              Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(residualtable, style: TextStyle(fontSize: 100)),
-              Padding(padding: EdgeInsets.all(10),),
-              Text('/', style: TextStyle(fontSize: 150)),
-              Padding(padding: EdgeInsets.all(10),),
-              Text(maxtable, style: TextStyle(fontSize: 100))
-            ],
-              ),
-              Padding(padding: EdgeInsets.all(60)),
-              TextField(
-                maxLength: 2,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                // ignore: deprecated_member_use
-                inputFormatters: [WhitelistingTextInputFormatter(RegExp('[0-9]')),],
-                decoration: InputDecoration(labelText: '잔여 테이블 수', counterText:'', border: InputBorder.none, hintText: '잔여 테이블 수'),
-                  onChanged: (String str) {
-                    setState(() => residualtable = str);
-                  },
-              ),
-              TextField(
-                maxLength: 2,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                // ignore: deprecated_member_use
-                inputFormatters: [WhitelistingTextInputFormatter(RegExp('[0-9]')),],
-                decoration: InputDecoration(labelText: '총 테이블 수', counterText:'', border: InputBorder.none, hintText: '총 테이블 수'),
-                onChanged: (String str) {
-                  setState(() => maxtable = str);
-                },
-              )
-            ],
+        child: Column(
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(residualtable, style: TextStyle(fontSize: 100)),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                ),
+                Text('/', style: TextStyle(fontSize: 150)),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                ),
+                Text(maxtable, style: TextStyle(fontSize: 100))
+              ],
             ),
-          ),
-        );
+            Padding(padding: EdgeInsets.all(60)),
+            TextField(
+              maxLength: 2,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              // ignore: deprecated_member_use
+              inputFormatters: [
+                WhitelistingTextInputFormatter(RegExp('[0-9]')),
+              ],
+              decoration: InputDecoration(
+                  labelText: '잔여 테이블 수',
+                  counterText: '',
+                  border: InputBorder.none,
+                  hintText: '잔여 테이블 수'),
+              onChanged: (String str) {
+                setState(() => residualtable = str);
+              },
+            ),
+            TextField(
+              maxLength: 2,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              // ignore: deprecated_member_use
+              inputFormatters: [
+                WhitelistingTextInputFormatter(RegExp('[0-9]')),
+              ],
+              decoration: InputDecoration(
+                  labelText: '총 테이블 수',
+                  counterText: '',
+                  border: InputBorder.none,
+                  hintText: '총 테이블 수'),
+              onChanged: (String str) {
+                setState(() => maxtable = str);
+              },
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

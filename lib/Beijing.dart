@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Chineserestaurant.dart';
+import 'JustCounting.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Beijing extends StatefulWidget {
   static String tag = 'beijing-page';
@@ -8,16 +10,42 @@ class Beijing extends StatefulWidget {
 }
 
 class BeijingState extends State<Beijing> {
+  String residualtable = ''; //남은 테이블 수
+  String maxtable = ''; // 총 테이블 수
+  SharedPreferences _prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTable();
+  }
+
+  void _loadTable() async {
+    // SharedPreferences의 인스턴스를 필드에 저장
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      // SharedPreferences에 각각 residualtable, maxtable로 저장된 값을 읽어 필드에 저장. 없을 경우 ''으로 대입
+      residualtable = (_prefs.getString('residualtable') ?? '');
+      maxtable = (_prefs.getString('maxtable') ?? '');
+    });
+  }
+
+  void _newTable() async {
+    setState(() {
+      //residualtable의 최신값을 SharedPreferences에 residualtable라는 이름으로 저장
+      _prefs.setString('residualtable', residualtable);
+      _prefs.setString('maxtable', maxtable);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Chineserestaurant()));
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Chineserestaurant()));
           },
           icon: Icon(Icons.arrow_back),
         ),
@@ -32,7 +60,7 @@ class BeijingState extends State<Beijing> {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius:
-                BorderRadius.only(bottomLeft: Radius.circular(108.0)),
+                    BorderRadius.only(bottomLeft: Radius.circular(108.0)),
                 color: Colors.white,
               ),
               child: Padding(
@@ -70,7 +98,19 @@ class BeijingState extends State<Beijing> {
                                       fontWeight: FontWeight.bold)),
                             ),
                             SizedBox(width: 4.0),
-                            Text('12/18',
+                            Text(residualtable,
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 52.0)),
+                            SizedBox(width: 4.0),
+                            Text('/',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 52.0)),
+                            SizedBox(width: 2.0),
+                            Text(maxtable,
                                 style: TextStyle(
                                     color: Colors.red,
                                     fontWeight: FontWeight.bold,
@@ -291,10 +331,8 @@ class DetailsScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 2,
                   child: IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Beijing()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Beijing()));
                     },
                     icon: Icon(Icons.arrow_drop_down),
                     color: Colors.white,
