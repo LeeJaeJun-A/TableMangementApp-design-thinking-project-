@@ -1,3 +1,5 @@
+import 'package:table_app/loginpage.dart';
+
 import 'Chineserestaurant.dart';
 import 'package:flutter/material.dart';
 
@@ -149,11 +151,21 @@ class GuestState extends State<Guest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => LoginPage()));
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: 40.0,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 180.0),
             buildChineseBtn(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:table_app/Guest.dart';
 import 'Beijing.dart';
 
 class Chineserestaurant extends StatefulWidget {
@@ -35,9 +36,7 @@ class ChineserestaurantState extends State<Chineserestaurant> {
     return Container(
       width: double.infinity,
       child: RaisedButton(
-        onPressed: () {
-
-        },
+        onPressed: () {},
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -58,9 +57,7 @@ class ChineserestaurantState extends State<Chineserestaurant> {
     return Container(
       width: double.infinity,
       child: RaisedButton(
-        onPressed: () {
-
-        },
+        onPressed: () {},
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -81,9 +78,7 @@ class ChineserestaurantState extends State<Chineserestaurant> {
     return Container(
       width: double.infinity,
       child: RaisedButton(
-        onPressed: () {
-
-        },
+        onPressed: () {},
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -104,9 +99,7 @@ class ChineserestaurantState extends State<Chineserestaurant> {
     return Container(
       width: double.infinity,
       child: RaisedButton(
-        onPressed: () {
-
-        },
+        onPressed: () {},
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -127,9 +120,7 @@ class ChineserestaurantState extends State<Chineserestaurant> {
     return Container(
       width: double.infinity,
       child: RaisedButton(
-        onPressed: () {
-
-        },
+        onPressed: () {},
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -149,11 +140,21 @@ class ChineserestaurantState extends State<Chineserestaurant> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Guest()));
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: 40.0,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 180.0),
             buildChineseBtn(),
